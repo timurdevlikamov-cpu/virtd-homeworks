@@ -29,6 +29,23 @@ Hey, Netology
 - Соберите и отправьте созданный образ в свой dockerhub-репозитории c tag 1.0.0 (ТОЛЬКО ЕСЛИ ЕСТЬ ДОСТУП). 
 - Предоставьте ответ в виде ссылки на https://hub.docker.com/<username_repo>/custom-nginx/general .
 
+Решение:
+- Установка docker и docker compose:
+  sudo apt update
+  sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+- Скачать образ nginx:1.29.0:
+  docker pull nginx:1.29.0
+- Создайте Dockerfile и реализуйте в нем замену дефолтной индекс-страницы:
+  cat Dockerfile
+  FROM nginx:1.29.0
+  COPY index.html /usr/share/nginx/html/index.html
+- Соберите и отправьте созданный образ в свой dockerhub-репозитории c tag 1.0.0:
+  docker login
+  docker build -t timurdevlikamov/custom-nginx:1.0.0 .
+- Предоставьте ответ в виде ссылки:
+  https://hub.docker.com/repository/docker/timurdevlikamov/custom-nginx/general
+
+
 ## Задача 2
 1. Запустите ваш образ custom-nginx:1.0.0 командой docker run в соответвии с требованиями:
 - имя контейнера "ФИО-custom-nginx-t2"
@@ -39,6 +56,15 @@ Hey, Netology
 4. Убедитесь с помощью curl или веб браузера, что индекс-страница доступна.
 
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
+
+Решение:
+1. Запустите ваш образ custom-nginx:1.0.0 командой docker run в соответвии с требованиями:
+  docker push timurdevlikamov/custom-nginx:1.0.0
+  docker run -d --name devlikamovtimur-nginx-t2 -p 127.0.0.1:8080:80 timurdevlikamov/custom-nginx:1.0.0
+2. Не удаляя, переименуйте контейнер в "custom-nginx-t2"
+   docker rename devlikamovtimur-nginx-t2 custom-nginx-t2
+3. Вывод выполнения в приложенном к решению задачи скриншоте
+4. curl -i http://127.0.0.1:8080
 
 
 ## Задача 3
@@ -57,18 +83,47 @@ Hey, Netology
 
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
 
-## Задача 4
+Решение:
+1. docker exec -it custom-nginx-t2 bash
+2. docker run -it --name custom-nginx-t2 -p 127.0.0.1:8080:80 timurdevlikamov/custom-nginx:1.0.0
+3. В пункте 2-а мы запустил и подключились к контейнеру терминалом который привязан к главному процессу контейнера, соотвественно при вызове сизнала Ctrl+C (сигнал прерывания процесса) мы прерываем процесс под которым запущен процесс контейнера, в итоге контейнер остановился.
+4. docker restart custom-nginx-t2
+5. docker run -it custom-nginx-t2 bash (у нас же ещё не запушен контейнер, если он запущен то docker exec -it custom-nginx-t2 bash)
+6. apt-get install vim
+7. vi /etc/nginx/conf.d/default.conf
+   cat /etc/nginx/conf.d/default.conf | grep listen
+   listen 81;
+8. nginx -s reload
+   curl http://127.0.0.1:80 ; curl http://127.0.0.1:81
+    curl: (7) Failed to connect to 127.0.0.1 port 80 after 0 ms: Couldn't connect to server
+    <! DOCTYPE html>
+    khtml>
+    <head>
+    Hey, Netology
+    </head>
+    <body>
+    <h1>I will be DevOps Engineer !< /h1>
+    </body>
+    </html>
+9. exit
+10. Изначально мы настраивали port forwarding на 127.0.0.1:8080:80, после изменения конфига nginx на 81 порт ожидаемо страница не грузиться по порту 8080
+12. docker rm -f custom-nginx-t2 
 
+
+## Задача 4
 
 - Запустите первый контейнер из образа ***centos*** c любым тегом в фоновом режиме, подключив папку  текущий рабочий каталог ```$(pwd)``` на хостовой машине в ```/data``` контейнера, используя ключ -v.
 - Запустите второй контейнер из образа ***debian*** в фоновом режиме, подключив текущий рабочий каталог ```$(pwd)``` в ```/data``` контейнера. 
 - Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```.
 - Добавьте ещё один файл в текущий каталог ```$(pwd)``` на хостовой машине.
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
-
-
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
 
+Решение:
+- docker run -d -v "$(pwd) :/data" debian
+  docker run -d -v "$(pwd) :/data" centos:7
+- ls /data/
+Скрины к выводу файлов приложены в решении задачи.
 
 ## Задача 5
 
@@ -118,6 +173,28 @@ services:
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод, файл compose.yaml , скриншот portainer c задеплоенным компоузом.
 
 ---
+
+Решение:
+1. mkdir -p /tmp/netology/docker/task5
+   vi /tmp/netology/docker/task5/compose.yaml
+   vi /tmp/netology/docker/task5/docker-compose.yaml
+   docker compose up -d
+   По итогу запустился /tmp/netology/docker/task5/compose.yaml
+   WARN[0000] Using /tmp/netology/docker/task5/compose.yaml
+   так как он используется в качестве дефолтного файла для запуска, docker-compose.yaml может использоваться только в качестве совестимости в легасиэ
+2. Добавил в соотвествии с документацией инструкцию:
+   include:
+    - docker-compose. yaml
+3. docker push localhost:5000/custom-nginx:latest
+Скрины по заданиям 4,5,6 приложены к решению данной задачи.
+7. docker compose up -d
+  WARN[0000] /tmp/netology/docker/task5/docker-compose.yaml: the attribute 'version' is obsolete, it will be ignored, please remove it to avoid potential confusion
+  WARN[0000] Found orphan containers ([task5-portainer-1]) for this project. If you removed or renamed this service in your compose file, you can run this command with the -- remove-
+  orphans flag to clean it up.
+  Как понимаю WARN - "Found orphan containers" выводит информацию об осиротевшем котнейнере "task5-portainer-1" и предлагает применить флаг -- remove-orphans для его очистки
+  По итогу выполнил:
+  docker compose up -d -- remove-orphans
+
 
 ### Правила приема
 
