@@ -119,6 +119,7 @@ Hey, Netology
 
 
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
+
 Решение:
 - docker run -d -v "$(pwd) :/data" debian
   docker run -d -v "$(pwd) :/data" centos:7
@@ -171,6 +172,7 @@ services:
 7. Удалите любой из манифестов компоуза(например compose.yaml).  Выполните команду "docker compose up -d". Прочитайте warning, объясните суть предупреждения и выполните предложенное действие. Погасите compose-проект ОДНОЙ(обязательно!!) командой.
 
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод, файл compose.yaml , скриншот portainer c задеплоенным компоузом.
+
 Решение:
 1. mkdir -p /tmp/netology/docker/task5
    vi /tmp/netology/docker/task5/compose.yaml
@@ -191,6 +193,7 @@ services:
   Как понимаю WARN - "Found orphan containers" выводит информацию об осиротевшем котнейнере "task5-portainer-1" и предлагает применить флаг -- remove-orphans для его очистки
   По итогу выполнил:
   docker compose up -d -- remove-orphans
+
 ---
 
 ### Правила приема
