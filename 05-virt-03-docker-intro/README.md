@@ -82,6 +82,7 @@ Hey, Netology
 12. Удалите запущенный контейнер "custom-nginx-t2", не останавливая его.(воспользуйтесь --help или google)
 
 В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
+
 Решение:
 1. docker exec -it custom-nginx-t2 bash
 2. docker run -it --name custom-nginx-t2 -p 127.0.0.1:8080:80 timurdevlikamov/custom-nginx:1.0.0
