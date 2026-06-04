@@ -101,7 +101,7 @@ https://github.com/timurdevlikamov-cpu/shvirtd-example-python
 Ссылка на скрипт:
 https://github.com/timurdevlikamov-cpu/shvirtd-example-python/blob/main/backup_mysqldb.sh
 Крон-таска:
-* * * * * cd /home/tdi/shvirtd-example-python && /home/tdi/shvirtd-example-python/backup_mysqldb.sh >> /home/tdi/shvirtd-example-python/backup.log 2>&1
+"* * * * * cd /home/tdi/shvirtd-example-python && /home/tdi/shvirtd-example-python/backup_mysqldb.sh >> /home/tdi/shvirtd-example-python/backup.log 2>&1"
 Скрины с резервными копиями:
 ![Скрин](Задача-5.png)
 
