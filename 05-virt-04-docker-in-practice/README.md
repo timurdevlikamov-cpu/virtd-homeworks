@@ -100,7 +100,9 @@ https://github.com/timurdevlikamov-cpu/shvirtd-example-python
 ## Решение к Задаче 5
 Ссылка на скрипт:
 https://github.com/timurdevlikamov-cpu/shvirtd-example-python/blob/main/backup_mysqldb.sh
+
 Крон-таска:
+
 "* * * * * cd /home/tdi/shvirtd-example-python && /home/tdi/shvirtd-example-python/backup_mysqldb.sh >> /home/tdi/shvirtd-example-python/backup.log 2>&1"
 Скрины с резервными копиями:
 ![Скрин](Задача-5.png)
@@ -108,6 +110,10 @@ https://github.com/timurdevlikamov-cpu/shvirtd-example-python/blob/main/backup_m
 ## Задача 6
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
 Предоставьте скриншоты  действий .
+## Решение к Задаче 6
+Не завёлся dive, победить так и не смог, более того после установки dive куда-то пропали все контейнеры которые я запускал ранее, docker ps -a стал пустым
+![Скрин](Задача-6.png)
+
 
 ## Задача 6.1
 Добейтесь аналогичного результата, используя docker cp.  
