@@ -76,7 +76,7 @@ https://github.com/timurdevlikamov-cpu/shvirtd-example-python
 6. Остановите проект. В качестве ответа приложите скриншот sql-запроса.
 
 ## Решение к Задаче 3
-(Задача-3.png)
+!(Задача-3.png)
 
 ## Задача 4
 1. Запустите в Yandex Cloud ВМ (вам хватит 2 Гб Ram).
