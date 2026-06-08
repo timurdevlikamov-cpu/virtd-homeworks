@@ -113,12 +113,9 @@ https://github.com/timurdevlikamov-cpu/shvirtd-example-python/blob/main/backup_m
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
 Предоставьте скриншоты  действий .
 ## Решение к Задаче 6
-Не завёлся dive, победить так и не смог, более того после установки dive куда-то пропали все контейнеры которые я запускал ранее, docker ps -a стал пустым
 ![Скрин](Задача-6.png)
-ИИ в Гугл посоветовал сделать 
-sudo snap connect dive:docker
-но и это не помогло
-error: snap "dive" has no plug named "docker"
+![Скрин](Задача-6-1.png)
+![Скрин](Задача-6-2.png)
 
 ## Задача 6.1
 Добейтесь аналогичного результата, используя docker cp.  
